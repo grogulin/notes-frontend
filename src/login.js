@@ -46,32 +46,20 @@ const LoginPage = ({ updateLoginStatus }) => {
     .then(response => response.json())
     .then((response) => {
         updateLoginStatus()
+        return response;
     })
-    // .then(data => {
-    //     // Handle the response from the backend
-    //     // console.log(data);
-    //     setError(data.message)
-    //     if (isLoggedIn) {
-    //         fetch(`${backendURL}/notes`, {
-    //             method: 'GET',
-    //             credentials: 'include',
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             updateLoginStatus()
-    //         })
-    //         .catch(error => {
-    //             // Handle any error that occurred during the request
-    //             console.error(error.message);
-    //         });
-    //     }
-    // })
+    .then((data) => {
+        setError(data.message)
+        // console.log(data);
+    })
 
     
     .catch(error => {
+
         // Handle any error that occurred during the request
         setUnauthorized(true)
-        console.error(error.message);
+        // setError('Unknown error')
+        console.error("Error: ", error.message);
     });
   };
 
@@ -88,7 +76,7 @@ const LoginPage = ({ updateLoginStatus }) => {
               </Label>
               <Input
                 type="email"
-                id="email"
+                id="login"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
