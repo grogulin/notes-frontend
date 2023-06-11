@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
 import backendURL from './config';
 
-const RegistrationPage = () => {
+const RegistrationPage = ({ updateLoginStatus }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -37,6 +37,7 @@ const RegistrationPage = () => {
         console.log(data);
         setRegistrationSuccess(true);
         setErrorMessage('');
+        updateLoginStatus();
       })
       .catch((error) => {
         // Handle any error that occurred during the request

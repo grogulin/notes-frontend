@@ -64,7 +64,7 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100px;
+  min-width: 120px;
   background-color: #fff;
   transition: background-color 1s ease;
   cursor: pointer;
@@ -83,6 +83,11 @@ h1 {
   height: 100%;
 }
 
+.nav-link button {
+  font-size: 1em;
+  margin: 15px 0px;
+}
+
 .registration-title {
   text-align: left;
 }
@@ -90,4 +95,48 @@ h1 {
 .text-left {
   display: block;
   text-align: left !important;
+}
+
+.card-toolbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 8px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s;
+}
+
+.card:hover .card-toolbar {
+  visibility: visible;
+  opacity: 1;
+}
+
+.toolbar-icon {
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.toolbar-icon:hover {
+  color: #e6e6e6;
+}
+
+.fade-in {
+  animation: fade-in-animation 0.5s;
+}
+
+@keyframes fade-in-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -6,7 +6,7 @@ import backendURL from './config';
 
 // import NotesPage from './notes';
 
-const LoginPage = () => {
+const LoginPage = ({ updateLoginStatus }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [unauthorized, setUnauthorized] = useState(false);
@@ -44,26 +44,28 @@ const LoginPage = () => {
         return response;
     })
     .then(response => response.json())
-    .then(data => {
-        // Handle the response from the backend
-        // console.log(data);
-        setError(data.message)
-        if (isLoggedIn) {
-            fetch(`${backendURL}/notes`, {
-                method: 'GET',
-                credentials: 'include',
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response from the backend
-                console.log(data);
-            })
-            .catch(error => {
-                // Handle any error that occurred during the request
-                console.error(error.message);
-            });
-        }
+    .then((response) => {
+        updateLoginStatus()
     })
+    // .then(data => {
+    //     // Handle the response from the backend
+    //     // console.log(data);
+    //     setError(data.message)
+    //     if (isLoggedIn) {
+    //         fetch(`${backendURL}/notes`, {
+    //             method: 'GET',
+    //             credentials: 'include',
+    //         })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             updateLoginStatus()
+    //         })
+    //         .catch(error => {
+    //             // Handle any error that occurred during the request
+    //             console.error(error.message);
+    //         });
+    //     }
+    // })
 
     
     .catch(error => {
