@@ -11,7 +11,7 @@ const LoginPage = ({ updateLoginStatus }) => {
   const [password, setPassword] = useState('');
   const [unauthorized, setUnauthorized] = useState(false);
   const [errorMessage, setError] = useState('');
-//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
   
@@ -36,6 +36,7 @@ const LoginPage = ({ updateLoginStatus }) => {
     .then((response) => {
         if (response.status === 200) {
             setIsLoggedIn(true);
+            console.log(isLoggedIn);
         } else if (response.status === 401) {
             setUnauthorized(true);
         } else {
