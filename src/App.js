@@ -23,21 +23,18 @@ function App() {
   const [username, setUsername] = useState('');
 
   const checkLogin = () => {
-    console.log('Function was activated!');
+    // console.log('Function was activated!');
     fetch(`${backendURL}/session`, {
       method: 'GET',
       credentials: 'include',
     })
-      .then((response) => {
-        
-        return response;
-      })
       .then((response) => {
         if (response.status === 200) {
           setIsLoggedIn(false);
           setUsername(null);
           return response.json();
         } else {
+          console.log(response)
           throw new Error('Failed to fetch session');
         }
       })

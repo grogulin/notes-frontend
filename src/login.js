@@ -45,6 +45,10 @@ const LoginPage = ({ updateLoginStatus }) => {
     })
     .then(response => response.json())
     .then((response) => {
+        console.log(response);
+        return response;
+    })
+    .then((response) => {
         updateLoginStatus()
         return response;
     })
