@@ -11,7 +11,7 @@ const LoginPage = ({ updateLoginStatus }) => {
   const [password, setPassword] = useState('');
   const [unauthorized, setUnauthorized] = useState(false);
   const [errorMessage, setError] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
   
