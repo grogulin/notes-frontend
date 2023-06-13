@@ -12,14 +12,16 @@ pipeline {
         }
     
         stage('Build') {
-            script {
-                def envContent = """
-                    BACKEND_URL=http://152.67.72.136:7000
-                """
-                
-                sh "echo '${envContent}' > .env"
-            }
             steps {
+                
+                script {
+                    def envContent = """
+                        BACKEND_URL=http://152.67.72.136:7000
+                    """
+                    
+                    sh "echo '${envContent}' > .env"
+                }
+
                 // Replace with the build commands or script for your specific project
                 sh 'npm install' // Example command for a Node.js project
                 sh 'npm run build'
