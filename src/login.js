@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React, { useState } from 'react';
 import { Container, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import backendURL from './config';
 
 // import NotesPage from './notes';
@@ -68,47 +69,55 @@ const LoginPage = ({ updateLoginStatus }) => {
     });
   };
 
-  return (
-    <Container className="mt-5">
-      <Row>
-        <Col xs={12} md={{ size: 6, offset: 3 }}>
-          <h3 className="registration-title">Login form</h3>
-          <Form>
-            <FormGroup>
-              {unauthorized && <div className="error-banner">{errorMessage}</div>}
-              <Label className="label-text text-left" for="login">
-                Username
-              </Label>
-              <Input
-                type="email"
-                id="login"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label className="label-text text-left" for="password">
-                Password
-              </Label>
-              <Input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FormGroup>
-            <Row className="justify-content-end">
-              <Col>
-                <Button className="w-100" color="primary" onClick={handleLogin}>
-                  Login
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
-  );
+  if (isLoggedIn) {
+    return (
+      <Link to="/notes" className="login-button" style={{margin:'200px auto'}}>
+        My notes
+      </Link>
+    )
+  } else {
+    return (
+      <Container className="mt-5">
+        <Row>
+          <Col xs={12} md={{ size: 6, offset: 3 }}>
+            <h3 className="registration-title">Login form</h3>
+            <Form>
+              <FormGroup>
+                {unauthorized && <div className="error-banner">{errorMessage}</div>}
+                <Label className="label-text text-left" for="login">
+                  Username
+                </Label>
+                <Input
+                  type="email"
+                  id="login"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label className="label-text text-left" for="password">
+                  Password
+                </Label>
+                <Input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FormGroup>
+              <Row className="justify-content-end">
+                <Col>
+                  <Button className="w-100" color="primary" onClick={handleLogin} style={{marginBottom: '20px'}}>
+                    Login
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 };
 
 export default LoginPage;

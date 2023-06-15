@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import { Container, Row, Col, Card, CardBody, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import backendURL from './config';
 
 // Initialize Font Awesome library
-library.add(faTrash, faEdit);
+library.add(faTrash, faEdit, faSignInAlt);
 
-const NotesPage = () => {
+const NotesPage = ({ isLoggedIn }) => {
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState('');
   const [editingNoteId, setEditingNoteId] = useState('');
@@ -35,16 +36,11 @@ const NotesPage = () => {
         }
       })
       .then((data) => {
-        // Handle the response from the backend
-        console.log(data);
         setNotes(data);
         setError('');
       })
       .catch((error) => {
-        // Handle any error that occurred during the request
-        // console.error(error.message);
         setNotes([]);
-        // setError('Error: Failed to fetch notes');
         setError(error.message)
       });
   };
@@ -83,9 +79,7 @@ const NotesPage = () => {
     })
       .then((response) => {
         if (response.status === 201) {
-          // Note created successfully
-          console.log('Note created successfully');
-          fetchNotes(); // Refresh the notes after creating
+          fetchNotes();
           setCreatingNewNote(false);
           setNewNoteText('');
         } else if (response.status === 401) {
@@ -164,74 +158,92 @@ const NotesPage = () => {
       });
   };
 
-  return (
-    <Container className="mt-5">
-      <h3 className="registration-title">My Notes</h3>
-      {error && <div className="error-banner">{error}</div>}
-      <Row>
-        <Col md={3} sm={12}>
-          <Card className={`mb-4 ${creatingNewNote ? 'fade-in' : ''}`} onClick={handleNewNote} style={{ cursor: 'pointer' }}>
-            <CardBody className="text-center">
-              {creatingNewNote ? (
-                <>
-                  <textarea
-                    value={newNoteText}
-                    onChange={(e) => setNewNoteText(e.target.value)}
-                    rows={4}
-                    cols={20}
-                    style={{ marginBottom: '10px' }}
-                  />
-                  <button className="create-button" onClick={handleCreateNote}>
-                    Create
-                  </button>
-                </>
-              ) : (
-                <>
-                  <h4>Create New Note</h4>
-                  <p>+</p>
-                </>
-              )}
-            </CardBody>
-          </Card>
-        </Col>
-        {notes.map((note) => (
-          <Col key={note.note_id} md={3} sm={12}>
-            <Card className="mb-4" style={{ position: 'relative' }}>
-              <CardBody>
-                <h4>{note.note_id}</h4>
-                {editingNoteId === note.note_id ? (
-                  <textarea
-                    value={editingNoteText}
-                    onChange={(e) => setEditingNoteText(e.target.value)}
-                    rows={4}
-                    cols={20}
-                    style={{ marginBottom: '10px' }}
-                  />
+  if (!isLoggedIn) {
+    return (
+      <Container className="mt-5 text-center">
+        <div className="login-prompt">
+          <h3 className="login-prompt-title">Please Log In</h3>
+          <p className="login-prompt-text">You need to log in before accessing the notes.</p>
+          <Link to="/login" className="login-button">
+            Log In
+          </Link>
+        </div>
+      </Container>
+    );
+  } else {
+
+    return (
+      <Container className="mt-5">
+        <h2>{isLoggedIn}</h2>
+        <h3 className="registration-title">My Notes</h3>
+        {error && <div className="error-banner">{error}</div>}
+        {isLoggedIn &&
+        <Row>
+          <Col md={3} sm={12}>
+            <Card className={`mb-4 ${creatingNewNote ? 'fade-in' : ''}`} onClick={handleNewNote} style={{ cursor: 'pointer' }}>
+              <CardBody className="text-center">
+                {creatingNewNote ? (
+                  <>
+                    <textarea
+                      value={newNoteText}
+                      onChange={(e) => setNewNoteText(e.target.value)}
+                      rows={4}
+                      cols={20}
+                      style={{ marginBottom: '10px' }}
+                    />
+                    <Button className="create-button" onClick={handleCreateNote} color='primary'>
+                      Create
+                    </Button>
+                  </>
                 ) : (
-                  <p>{note.note_text}</p>
+                  <>
+                    <h4>Create New Note</h4>
+                    <p>+</p>
+                  </>
                 )}
-                <small>{formatDate(note.created_at)}</small>
               </CardBody>
-              <div className="card-toolbar">
-                {editingNoteId === note.note_id ? (
-                  <button className="update-button" onClick={() => handleUpdateNote(note.note_id)}>
-                    Update
-                  </button>
-                ) : (
-                  <span className="toolbar-icon" onClick={() => handleEditNote(note.note_id)}>
-                    <FontAwesomeIcon icon={faEdit} />
-                  </span>
-                )}
-                <span className="toolbar-icon" onClick={() => handleDeleteNote(note.note_id)}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </span>
-              </div>
             </Card>
           </Col>
-        ))}
-      </Row>
-    </Container>
-  );
+          {notes.map((note) => (
+            <Col key={note.note_id} md={3} sm={12}>
+              <Card className="mb-4" style={{ position: 'relative' }}>
+                <CardBody>
+                  <h4>{note.note_id}</h4>
+                  {editingNoteId === note.note_id ? (
+                    <textarea
+                      value={editingNoteText}
+                      onChange={(e) => setEditingNoteText(e.target.value)}
+                      rows={4}
+                      cols={20}
+                      style={{ marginBottom: '10px' }}
+                    />
+                  ) : (
+                    <p>{note.note_text}</p>
+                  )}
+                  <small>{formatDate(note.created_at)}</small>
+                </CardBody>
+                <div className="card-toolbar">
+                  {editingNoteId === note.note_id ? (
+                    <Button className="update-button" onClick={() => handleUpdateNote(note.note_id)} color='primary'>
+                      Update
+                    </Button>
+                  ) : (
+                    <span className="toolbar-icon" onClick={() => handleEditNote(note.note_id)}>
+                      <FontAwesomeIcon icon={faEdit} />
+                    </span>
+                  )}
+                  <span className="toolbar-icon" onClick={() => handleDeleteNote(note.note_id)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </span>
+                </div>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+        }
+      </Container>
+    );
+  }
 };
 
 export default NotesPage;

@@ -16,7 +16,7 @@ pipeline {
                 
                 script {
                     def envContent = """
-                        BACKEND_URL=http://152.67.72.136:7000
+                        REACT_APP_BACKEND_URL=http://152.67.72.136:7000
                     """
                     
                     sh "echo '${envContent}' > .env"

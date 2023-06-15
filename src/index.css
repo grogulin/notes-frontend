@@ -64,7 +64,8 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 100%;
-  min-width: 120px;
+  min-width: 80px;
+  margin-left: 10px;
   background-color: #fff;
   transition: background-color 1s ease;
   cursor: pointer;
@@ -140,3 +141,43 @@ h1 {
     opacity: 1;
   }
 }
+
+.login-prompt {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.login-prompt-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.login-prompt-text {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-icon {
+  margin-top: 20px;
+  color: #007bff;
+}
+
+
