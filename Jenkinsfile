@@ -35,12 +35,13 @@ pipeline {
                 
                     
                 sshagent(['oracle']) {
-                    // sh 'ssh -o StrictHostKeyChecking=no ubuntu@152.67.72.136 "pm2 stop notes-frontend && rm -rf apps/notes-frontend/*"'
+
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@152.67.72.136 "sudo rm -rf /var/www/html/notes-frontend/*"'
+
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@152.67.72.136 "sudo rm -rf /home/ubuntu/app/notes-frontend/*"'
                     // sh 'scp -o StrictHostKeyChecking=no -r ./build/* ubuntu@152.67.72.136:apps/notes-frontend/'
-                    sh 'scp -o StrictHostKeyChecking=no -r ./build/* ubuntu@152.67.72.136:apps/notes-frontend'
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@152.67.72.136 "sudo mv apps/notes-frontend /var/www/html"'
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@152.67.72.136 "cd /var/www/html && ls -la"'
+                    sh 'scp -o StrictHostKeyChecking=no -r ./build/* ubuntu@152.67.72.136:/home/ubuntu/apps/notes-frontend'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@152.67.72.136 "sudo mv apps/notes-frontend/* /var/www/html/notes-frontend"'
                     // cp -r /home/ubuntu/apps/notes-frontend /var/www/html
                     // sh 'scp -o StrictHostKeyChecking=no -r ./.env ubuntu@152.67.72.136:apps/notes-frontend/'
                 }
