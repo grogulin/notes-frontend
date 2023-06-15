@@ -30,21 +30,23 @@ function App() {
     })
       .then((response) => {
         if (response.status === 200) {
-          setIsLoggedIn(false);
-          setUsername(null);
+          setIsLoggedIn(true);
+          setUsername(data.username);
           return response.json();
         } else {
-          console.log(response)
-          throw new Error('Failed to fetch session');
+          setIsLoggedIn(false);
+          setUsername(null);
+          // console.log(response)
+          // throw new Error('Failed to fetch session');
         }
       })
-      .then((data) => {
-        // Handle the session data from the backend
-        setIsLoggedIn(true);
-        setUsername(data.username);
-        // navigate('/notes');
+      // .then((data) => {
+      //   // Handle the session data from the backend
+      //   setIsLoggedIn(true);
+      //   setUsername(data.username);
+      //   // navigate('/notes');
         
-      })
+      // })
       .catch((error) => {
         console.error(error.message);
         setIsLoggedIn(false);
