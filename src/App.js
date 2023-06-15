@@ -30,9 +30,10 @@ function App() {
     })
       .then((response) => {
         if (response.status === 200) {
+          data = response.json();
           setIsLoggedIn(true);
           setUsername(data.username);
-          return response.json();
+          // return response.json();
         } else {
           setIsLoggedIn(false);
           setUsername(null);
