@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import React, { useState } from 'react';
@@ -13,7 +13,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEdit, faTrash, faSignOutAlt, faNoteSticky } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { useMediaQuery } from 'react-responsive';
 
 import backendURL from './config';
 
@@ -66,8 +65,6 @@ function App() {
         console.error(error.message);
       });
   };
-
-  const isMobile = useMediaQuery({ maxWidth: 576 });
 
   return (
     <div className="App">
