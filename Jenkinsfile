@@ -15,8 +15,11 @@ pipeline {
             steps {
                 
                 script {
+                    // def envContent = """
+                    //     REACT_APP_BACKEND_URL=http://152.67.72.136:7000
+                    // """
                     def envContent = """
-                        REACT_APP_BACKEND_URL=http://152.67.72.136:7000
+                        REACT_APP_BACKEND_URL=http://freedevdom.mooo.com:7000
                     """
                     
                     sh "echo '${envContent}' > .env"

@@ -183,7 +183,7 @@ const NotesPage = ({ isLoggedIn }) => {
             <Card className={`mb-4 ${creatingNewNote ? 'fade-in' : ''}`} onClick={handleNewNote} style={{ cursor: 'pointer' }}>
               <CardBody className="text-center">
                 {creatingNewNote ? (
-                  <>
+                  <div className='cardEdit'>
                     <textarea
                       value={newNoteText}
                       onChange={(e) => setNewNoteText(e.target.value)}
@@ -194,7 +194,7 @@ const NotesPage = ({ isLoggedIn }) => {
                     <Button className="create-button" onClick={handleCreateNote} color='primary'>
                       Create
                     </Button>
-                  </>
+                  </div>
                 ) : (
                   <>
                     <h4>Create New Note</h4>
