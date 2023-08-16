@@ -88,7 +88,7 @@ const RegistrationPage = ({ updateLoginStatus }) => {
                     <Row className='justify-content-end'>
                         <Col>
                             <Button className='w-100' color="primary" onClick={handleRegistration}>
-                                Register
+                                Create account
                             </Button>
                         </Col>
                     </Row>

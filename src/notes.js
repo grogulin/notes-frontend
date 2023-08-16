@@ -164,7 +164,7 @@ const NotesPage = ({ isLoggedIn }) => {
         <div className="login-prompt">
           <h3 className="login-prompt-title">Please Log In</h3>
           <p className="login-prompt-text">You need to log in before accessing the notes.</p>
-          <Link to="/login" className="login-button">
+          <Link to="/notes/login" className="login-button">
             Log In
           </Link>
         </div>
