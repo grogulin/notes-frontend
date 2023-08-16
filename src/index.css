@@ -194,3 +194,14 @@ h1 {
   resize: 'vertical';
   font-size: '14px';
 }
+
+.root-link {
+  text-decoration: none !important;
+  color: black;
+  transition: background-color 1s ease;
+  cursor: pointer;
+}
+
+.root-link:hover {
+  background-color: #eee;
+}

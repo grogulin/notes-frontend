@@ -71,12 +71,15 @@ function App() {
       <Router>
         <header>
           <Container className='header-container'>
-            <div className="logo-container">
-              {/* <img src={logo} alt="Logo" className="logo" /> */}
-              <FontAwesomeIcon icon={faNoteSticky} size='xl' className='logo'/>
-              <h1>Notes</h1>
-              <h6>App:</h6>
-            </div>
+            <a href='/notes' className='root-link'>
+              <div className="logo-container">
+                {/* <img src={logo} alt="Logo" className="logo" /> */}
+                <FontAwesomeIcon icon={faNoteSticky} size='xl' className='logo'/>
+                <h1>Notes</h1>
+                <h6>App:</h6>
+              </div>
+            </a>
+            
             <div className="button-container">
               {isLoggedIn && 
                 <div className="nav-link">
