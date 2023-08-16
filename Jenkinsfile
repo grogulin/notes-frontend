@@ -19,7 +19,7 @@ pipeline {
                     //     REACT_APP_BACKEND_URL=http://152.67.72.136:7000
                     // """
                     def envContent = """
-                        REACT_APP_BACKEND_URL=https://freedevdom.mooo.com:7000/api
+                        REACT_APP_BACKEND_URL=https://freedevdom.mooo.com/api
                     """
                     
                     sh "echo '${envContent}' > .env"
