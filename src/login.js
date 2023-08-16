@@ -71,7 +71,7 @@ const LoginPage = ({ updateLoginStatus }) => {
 
   if (isLoggedIn) {
     return (
-      <Link to="/notes" className="login-button" style={{margin:'200px auto'}}>
+      <Link to="/notes/mynotes" className="login-button" style={{margin:'200px auto'}}>
         My notes
       </Link>
     )
