@@ -80,17 +80,17 @@ function App() {
             <div className="button-container">
               {isLoggedIn && 
                 <div className="nav-link">
-                  <Link to="/notes">My Notes</Link>
+                  <Link to="/notes/mynotes/">My Notes</Link>
                 </div>
               }
               {!isLoggedIn && 
                 <div className="nav-link">
-                  <Link to="/login">Login</Link>
+                  <Link to="/notes/login">Login</Link>
                 </div>
               }
               {!isLoggedIn && 
                 <div className="nav-link">
-                  <Link to="/registration">Register</Link>
+                  <Link to="/notes/registration">Register</Link>
                 </div>
               }
               {isLoggedIn && 
@@ -104,10 +104,10 @@ function App() {
           </Container>
         </header>
         <Routes>
-          <Route path="/" element={<LoginPage updateLoginStatus={checkLogin} />} />
-          <Route path="/login" element={<LoginPage updateLoginStatus={checkLogin} />} />
-          <Route path="/registration" element={<RegistrationPage updateLoginStatus={checkLogin} />} />
-          <Route path="/notes" element={<NotesPage isLoggedIn={isLoggedIn}/>} />
+          <Route path="/notes" element={<LoginPage updateLoginStatus={checkLogin} />} />
+          <Route path="/notes/login" element={<LoginPage updateLoginStatus={checkLogin} />} />
+          <Route path="/notes/registration" element={<RegistrationPage updateLoginStatus={checkLogin} />} />
+          <Route path="/notes/mynotes" element={<NotesPage isLoggedIn={isLoggedIn}/>} />
           {/* Add more routes for other pages */}
         </Routes>
       </Router>
