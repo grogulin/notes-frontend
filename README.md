@@ -1,6 +1,6 @@
 # notes-frontend
 
-## You can try it [here](https://freedevdom.mooo.com/notes)
+## You can try it [here](https://freedevdom.mooo.com/notes/login)
 
 # Project overview:
 The main idea of the NotesApp project is to create a bare-bones service for saving text notes.
