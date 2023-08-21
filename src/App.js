@@ -68,7 +68,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
+      <Router basename='/notes'>
         <header>
           <Container className='header-container'>
             <a href='/notes' className='root-link'>
